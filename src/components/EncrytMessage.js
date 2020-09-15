@@ -31,35 +31,26 @@
 // a t t s !
 // -> "1ga.it2gt1as w!"
 
-// const message1 = "One does not simply walk into Mordor";
-// const r1 = 6;
-// const c1 = 6;
-// const message2 = "1.21 gigawatts!";
-// const r2 = 5;
-// const c2 = 3;
-// const r3 = 3;
-// const c3 = 5;
-
 function encryptMessage(message, row, column){
   let array = message.split("")
   let rows = []
   let result = []
   for(let i = 0; i < row; i++){
-    let arr = []
-    arr.push(array.splice(0, column)) // [...column(6)]
-    rows.push(arr) // [[...row(6)]]
+    let newArr = []
+    arr.push(array.splice(0, column)) // [...column(n)] Creates a new array containning the value (passed to column) elements in it
+    rows.push(newArr) // [[...row(n)]] pushes the newly created arrays into the rows array until it reaches the value (passed to row)
   }
   for(let i = 0; i < column; i++){
     for(let j = 0; j < rows.length; j++){
-      result.push(rows[j][0].shift())
+      result.push(rows[j][0].shift()) // pushing the destructively removed first element of each array in the result array
     }
   }
-  return result.join("")
+  return result.join("") // Joining the result to return a single email
 }
 
 
 console.log(encryptMessage("1.21 gigawatts!", 3, 5 ))
-// // "1ga.it2gt1as w!"
+// "1ga.it2gt1as w!"
 
 console.log(encryptMessage("1.21 gigawatts!", 5, 3 ))
 // "11iwt. gas2gat!"
